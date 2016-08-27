@@ -1,0 +1,220 @@
+snippet bootstrapcdn "Bootstrap cdn" b
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+$0
+endsnippet
+
+snippet container "Boostrap 3 Container" b
+<div class="container">
+    ${1:...}
+</div>
+$0
+endsnippet
+
+snippet container-fluid "Boostrap 3 Container-Fuild" b
+<div class="container-fluid">
+    ${1:...}
+</div>
+$0
+endsnippet
+
+global !p
+def complete(t, opts):
+  if t:
+    opts = [ m for m in opts if m.startswith(t) ]
+  if len(opts) == 1:
+    return opts[0]
+  return '(' + '|'.join(opts) + ')'
+endglobal
+
+snippet row "Boostrap 3 row" b
+<div class="row">
+    ${1:...}
+</div>
+$0
+endsnippet
+
+snippet "col(-)?(xs|sm|md|lg)(-)?(\d+)(o(\d))?" "Boostrap 3 column with offset option" br
+<div class="col-`!p
+size = match.group(2)
+length = match.group(4)
+if match.group(5):
+  snip.rv = size + '-' + length + ' col-' + size + '-' + 'offset-' + match.group(6)
+else:
+  snip.rv = match.group(2) + '-' + match.group(4)`">
+    ${1:...}
+</div>
+$0
+endsnippet
+
+snippet "table(-)?(striped|bordered|hover|condensed)?" "Bootstrap 3 Table" br
+<table class="table`!p
+if match.group(2):
+  snip.rv = ' ' + 'table-' + match.group(2)
+`">
+    <thead>
+        <tr>
+            $1
+        </tr>
+    </thead>
+    <tbody>
+        $2
+    </tbody>
+</table>
+$0
+endsnippet
+
+snippet "table(-)?r(esponsive)?" "Bootstrap 3 table-responsive" br
+<div class="table-responsive">
+    table$1
+</div>
+$0
+endsnippet
+
+snippet "d(iv)?" "Bootrap 3 div" br
+<div class="$1">
+    $2
+</div>
+$0
+endsnippet
+
+snippet "(btn|button)(-)?(default|primary|success|info|warning|danger|link)?" "Bootstrap 3 buttons" br
+<button type="${1:button}" class="btn`!p
+if match.group(3):
+  snip.rv = ' btn-' + match.group(3)
+else:
+  snip.rv = ' btn-default'`">$2</button>
+$0
+endsnippet
+
+snippet "pag(ination)?(-)?(sm|lg)?" "Bootstrap 3 Pagination" br
+<ul class="pagination`!p
+if match.group(3):
+  snip.rv = ' pagination-' + match.group(3)
+`">
+    ${1:lia}
+</ul>
+$0
+endsnippet
+
+snippet lia "Bootstrap 3 list item with link" b
+<li><a href="${1:#}">${2:Item}</a></li>
+$0
+endsnippet
+
+snippet "(lg|listgroup)" "Bootstrap 3 list group" br
+    ${1:lgi}
+$0
+endsnippet
+
+snippet "(lgi|listgroupitem)" "Bootstrap 3 list group item" br
+<li class="list-group-item">$1<li>
+$0
+endsnippet
+
+snippet "(lgib|listgroupitembadge)" "Bootstrap 3 list group item" br
+<li class="list-group-item"><span class="badge">$1</span><li>
+$0
+endsnippet
+
+snippet "(form(-)?(horizontal|inline)?)|(f(h|i)?)" "Bootstrap 3 form" br
+<form `!p
+if match.group(3) or match.group(5):
+  if match.group(3) == 'inline' or match.group(5) == 'i':
+    snip.rv = 'class="form-inline" '
+  else:
+    snip.rv = 'class="form-horizontal" '`role="form">
+    ${1:form-group}
+</form>
+$0
+endsnippet
+
+snippet "(fg)|(form-group)" "Boostrap 3 form group" br
+<div class="form-group">
+    ${1:colsm4}
+</div>
+$0
+endsnippet
+
+snippet "c(heck)?box" "Bootstrap 3 checkbox" br
+<div class="checkbox">
+    <label><input type="checkbox" value="$1">${1:Option 1}</label>
+</div>
+$0
+endsnippet
+
+snippet t "Create a tag" w
+<${1:div}>
+    $2  
+<${1/(\w+).*/$1/}>
+$0
+endsnippet
+
+snippet modal "Bootstrap 3 modal" b
+<!-- Modal --> 
+<div id="${1:myModal}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;<buton>
+                <${2:h4} class="modal-title">${3:Modal Header}</$2>
+            </div>
+            <div class="modal-body">
+                $4  
+            </div>
+            <div class="modal-footer">
+                $5  
+            </div>
+        </div>
+    </div>
+</div>
+$0
+endsnippet
+
+snippet "btnm(odal)?" "Bootstrap 3 modal button" br
+<!-- Trigger the modal with a button --->
+<button type="button" class="btn btn$1" data-toggle="modal" data-target="${2:myModal}">
+$2</button>
+$0
+endsnippet
+
+snippet "btn(p|i|d|w|s|l)" "Bootstrap 3 button completeion" r
+btn-`!p snip.rv=complete(match.group(1), ['primary', 'info', 'danger', 'warning', 'success', 'links'])`
+endsnippet
+
+snippet "drop(down)?" "Bootstrap 3 dropdown" br
+<div class="dropdown">
+    <button class="btn ${1:btn-primary} dropdown-toggle" type="button"
+        data-toggle="dropdown">${2:Dropdown Menu}
+        <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a href="${3:#}">${4:Item One}</a></li>
+    </ul>
+</div>
+$0
+endsnippet
+
+snippet "nav(bar)?(-)?(i(nverse)?)?" "Bootstrap 3 collapseable navbar" br
+<nav class="navbar `!p 
+snip.rv = 'navbar-inverse' if match.group(3) is not None else 'navbar-default'`">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="${2:#}">${3:WebSiteName}</a>
+        </div>
+        <div class="collapse navbar-colapse">
+            <ul class="nav navbar-nav">
+                <li ${4:class="acitve"}><a href="${5:#}">${6:Home}</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+$0
+endsnippet
