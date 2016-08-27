@@ -40,7 +40,7 @@ snippet row "Boostrap 3 row" b
 $0
 endsnippet
 
-snippet "col(-)?(xs|sm|md|lg)(-)?(\d+)(o(\d))?" "Boostrap 3 column with offset option" br
+snippet "col(-)?(xs|sm|md|lg)(-)?(\d+)(o(\d))?" "Boostrap 3 column with offset option" rb
 <div class="col-`!p
 size = match.group(2)
 length = match.group(4)
@@ -53,7 +53,7 @@ else:
 $0
 endsnippet
 
-snippet "table(-)?(striped|bordered|hover|condensed)?" "Bootstrap 3 Table" br
+snippet "table(-)?(striped|bordered|hover|condensed)?" "Bootstrap 3 Table" rb
 <table class="table`!p
 if match.group(2):
   snip.rv = ' ' + 'table-' + match.group(2)
@@ -70,21 +70,21 @@ if match.group(2):
 $0
 endsnippet
 
-snippet "table(-)?r(esponsive)?" "Bootstrap 3 table-responsive" br
+snippet "table(-)?r(esponsive)?" "Bootstrap 3 table-responsive" rb
 <div class="table-responsive">
     table$1
 </div>
 $0
 endsnippet
 
-snippet "d(iv)?" "Bootrap 3 div" br
+snippet "d(iv)?" "Bootrap 3 div" rb
 <div class="$1">
     $2
 </div>
 $0
 endsnippet
 
-snippet "(btn|button)(-)?(default|primary|success|info|warning|danger|link)?" "Bootstrap 3 buttons" br
+snippet "(btn|button)(-)?(default|primary|success|info|warning|danger|link)?" "Bootstrap 3 buttons" rb
 <button type="${1:button}" class="btn`!p
 if match.group(3):
   snip.rv = ' btn-' + match.group(3)
@@ -93,7 +93,7 @@ else:
 $0
 endsnippet
 
-snippet "pag(ination)?(-)?(sm|lg)?" "Bootstrap 3 Pagination" br
+snippet "pag(ination)?(-)?(sm|lg)?" "Bootstrap 3 Pagination" rb
 <ul class="pagination`!p
 if match.group(3):
   snip.rv = ' pagination-' + match.group(3)
@@ -108,22 +108,22 @@ snippet lia "Bootstrap 3 list item with link" b
 $0
 endsnippet
 
-snippet "(lg|listgroup)" "Bootstrap 3 list group" br
+snippet "(lg|listgroup)" "Bootstrap 3 list group" rb
     ${1:lgi}
 $0
 endsnippet
 
-snippet "(lgi|listgroupitem)" "Bootstrap 3 list group item" br
+snippet "(lgi|listgroupitem)" "Bootstrap 3 list group item" rb
 <li class="list-group-item">$1<li>
 $0
 endsnippet
 
-snippet "(lgib|listgroupitembadge)" "Bootstrap 3 list group item" br
+snippet "(lgib|listgroupitembadge)" "Bootstrap 3 list group item" rb
 <li class="list-group-item"><span class="badge">$1</span><li>
 $0
 endsnippet
 
-snippet "(form(-)?(horizontal|inline)?)|(f(h|i)?)" "Bootstrap 3 form" br
+snippet "(form(-)?(horizontal|inline)?)|(f(h|i)?)" "Bootstrap 3 form" rb
 <form `!p
 if match.group(3) or match.group(5):
   if match.group(3) == 'inline' or match.group(5) == 'i':
@@ -135,14 +135,14 @@ if match.group(3) or match.group(5):
 $0
 endsnippet
 
-snippet "(fg)|(form-group)" "Boostrap 3 form group" br
+snippet "(fg)|(form-group)" "Boostrap 3 form group" rb
 <div class="form-group">
     ${1:colsm4}
 </div>
 $0
 endsnippet
 
-snippet "c(heck)?box" "Bootstrap 3 checkbox" br
+snippet "c(heck)?box" "Bootstrap 3 checkbox" rb
 <div class="checkbox">
     <label><input type="checkbox" value="$1">${1:Option 1}</label>
 </div>
@@ -179,7 +179,7 @@ snippet modal "Bootstrap 3 modal" b
 $0
 endsnippet
 
-snippet "btnm(odal)?" "Bootstrap 3 modal button" br
+snippet "btnm(odal)?" "Bootstrap 3 modal button" rb
 <!-- Trigger the modal with a button --->
 <button type="button" class="btn btn$1" data-toggle="modal" data-target="${2:myModal}">
 $2</button>
@@ -190,7 +190,7 @@ snippet "btn(p|i|d|w|s|l)" "Bootstrap 3 button completeion" r
 btn-`!p snip.rv=complete(match.group(1), ['primary', 'info', 'danger', 'warning', 'success', 'links'])`
 endsnippet
 
-snippet "drop(down)?" "Bootstrap 3 dropdown" br
+snippet "drop(down)?" "Bootstrap 3 dropdown" rb
 <div class="dropdown">
     <button class="btn ${1:btn-primary} dropdown-toggle" type="button"
         data-toggle="dropdown">${2:Dropdown Menu}
@@ -202,12 +202,12 @@ snippet "drop(down)?" "Bootstrap 3 dropdown" br
 $0
 endsnippet
 
-snippet "nav(bar)?(-)?(i(nverse)?)?" "Bootstrap 3 collapseable navbar" br
+snippet "nav(bar)?(-)?(i(nverse)?)?" "Bootstrap 3 collapseable navbar" rb
 <nav class="navbar `!p 
 snip.rv = 'navbar-inverse' if match.group(3) is not None else 'navbar-default'`">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="${2:#}">${3:WebSiteName}</a>
+            <a class="navbar-rband" href="${2:#}">${3:WebSiteName}</a>
         </div>
         <div class="collapse navbar-colapse">
             <ul class="nav navbar-nav">
